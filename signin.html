@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In | SHOP.CO</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <style>
+      :root {
+        --bg: #f4efe6;
+        --bg-soft: #ebe4d4;
+        --ink: #16181d;
+        --muted: #6b7380;
+        --card: rgba(255, 255, 255, 0.9);
+        --line: #d9dee6;
+        --brand: #0d6efd;
+        --brand-strong: #0849b8;
+      }
+
+      body.auth-page {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at 85% 5%, #ffeeda 0%, transparent 30%),
+          radial-gradient(circle at 10% 90%, #e6f1ff 0%, transparent 40%),
+          linear-gradient(135deg, var(--bg), var(--bg-soft));
+        color: var(--ink);
+        overflow-x: hidden;
+      }
+
+      .auth-background {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+      }
+
+      .bg-circle {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.48;
+        filter: blur(1px);
+        animation: floatCircle 12s ease-in-out infinite alternate;
+      }
+
+      .circle-a {
+        width: 230px;
+        height: 230px;
+        top: -95px;
+        left: -70px;
+        background: rgba(255, 190, 132, 0.42);
+      }
+
+      .circle-b {
+        width: 190px;
+        height: 190px;
+        right: 6%;
+        top: 14%;
+        background: rgba(126, 174, 255, 0.4);
+        animation-delay: 1.6s;
+      }
+
+      .circle-c {
+        width: 210px;
+        height: 210px;
+        left: 38%;
+        bottom: -105px;
+        background: rgba(135, 208, 169, 0.32);
+        animation-delay: 3s;
+      }
+
+      .auth-layout {
+        position: relative;
+        z-index: 1;
+      }
+
+      .auth-card {
+        background: var(--card);
+        border-radius: 28px;
+        border: 0;
+        backdrop-filter: blur(6px);
+        box-shadow: 0 20px 55px rgba(40, 46, 57, 0.18);
+      }
+
+      .auth-card .card-body {
+        border-radius: 10px;
+        background: linear-gradient(
+          rgba(145, 85, 85, 0.801),
+          rgba(77, 77, 121, 0.573),
+          rgba(124, 113, 113, 0.345)
+        );
+      }
+
+      .brand-head {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 8px;
+        font-weight: 700;
+        letter-spacing: 0.6px;
+      }
+
+      .brand-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--brand);
+      }
+
+      .field-with-icon {
+        position: relative;
+      }
+
+      .field-with-icon .field-icon {
+        position: absolute;
+        left: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--muted);
+        font-size: 16px;
+        pointer-events: none;
+        z-index: 2;
+        transition: color 0.2s ease;
+      }
+
+      .field-with-icon .form-control {
+        height: 48px;
+        border-radius: 13px;
+        padding-left: 42px;
+        border: 1px solid var(--line);
+        background: #fbfcff;
+      }
+
+      .field-with-icon .form-control:focus {
+        border-color: var(--brand);
+        box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.12);
+      }
+
+      .field-with-icon:focus-within .field-icon {
+        color: var(--brand);
+      }
+
+      .signin-btn {
+        height: 50px;
+        border-radius: 999px;
+        border: 0;
+        background: linear-gradient(120deg, var(--brand), var(--brand-strong));
+        font-weight: 600;
+        letter-spacing: 0.4px;
+      }
+
+      #signinAlert .alert {
+        border-radius: 12px;
+      }
+
+      @keyframes floatCircle {
+        from {
+          transform: translate3d(0, 0, 0) scale(1);
+        }
+        to {
+          transform: translate3d(15px, -11px, 0) scale(1.08);
+        }
+      }
+
+      @media (max-width: 767px) {
+        .auth-card .card-body {
+          padding: 1.4rem !important;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .bg-circle {
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+  <body class="auth-page">
+    <div class="auth-background" aria-hidden="true">
+      <span class="bg-circle circle-a"></span>
+      <span class="bg-circle circle-b"></span>
+      <span class="bg-circle circle-c"></span>
+    </div>
+
+    <div class="container auth-layout py-4">
+      <div class="row justify-content-center align-items-center min-vh-100 g-4">
+        <div class="col-12 col-xl-11">
+          <div class="row justify-content-center">
+            <div class="col-12 col-lg-8 col-xl-6">
+              <div class="card auth-card h-100">
+                <div
+                  class="card-body p-4 p-md-5 d-flex flex-column justify-content-center"
+                >
+                  <div class="brand-head">
+                    <span class="brand-dot"></span> SHOP.CO
+                  </div>
+                  <h1 class="h3 mb-2 text-center">Sign in to your account</h1>
+                  <p class="text-muted text-center mb-4">
+                    Continue shopping with your saved preferences.
+                  </p>
+
+                  <div id="signinAlert"></div>
+
+                  <form class="needs-validation" novalidate>
+                    <div class="mb-3">
+                      <label for="email" class="form-label"
+                        >Email address</label
+                      >
+                      <div class="field-with-icon">
+                        <i
+                          class="bi bi-envelope-fill field-icon"
+                          aria-hidden="true"
+                        ></i>
+                        <input
+                          type="email"
+                          class="form-control"
+                          id="email"
+                          placeholder="name@example.com"
+                          autocomplete="email"
+                          pattern="[^\s@]+@[^\s@]+\.[^\s@]{2,}"
+                          required
+                        />
+                        <div class="invalid-feedback">
+                          Please enter a valid email.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="password" class="form-label">Password</label>
+                      <div class="field-with-icon">
+                        <i
+                          class="bi bi-lock-fill field-icon"
+                          aria-hidden="true"
+                        ></i>
+                        <input
+                          type="password"
+                          class="form-control"
+                          id="password"
+                          placeholder="Password"
+                          required
+                        />
+                        <div class="invalid-feedback">
+                          Please enter your password.
+                        </div>
+                      </div>
+                    </div>
+
+                    <button
+                      type="submit"
+                      class="btn btn-primary w-100 signin-btn"
+                    >
+                      Sign In
+                    </button>
+                  </form>
+
+                  <div class="text-center mt-3">
+                    <small>
+                      Don't have an account?
+                      <a href="register.html">Register</a>
+                    </small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-8d1+zG6clSRsKPAjxFIMjh0h4VjAomfsZyny6j6bR+hi7YdpT+4or4XGOQm49KQ5"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="js/pages/signin.js"></script>
+  </body>
+</html>

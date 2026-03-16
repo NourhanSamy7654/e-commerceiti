@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register | SHOP.CO</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <style>
+      :root {
+        --bg: #f6f1e8;
+        --bg-soft: #ede6d8;
+        --ink: #16181d;
+        --muted: #6b7380;
+        --card: rgba(255, 255, 255, 0.9);
+        --line: #d9dee6;
+        --brand: #0d6efd;
+        --brand-strong: #0849b8;
+        --accent: #198754;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      .card-body {
+        border-radius: 10px;
+        background: linear-gradient(
+          rgba(145, 85, 85, 0.801),
+          rgba(77, 77, 121, 0.573),
+          rgba(124, 113, 113, 0.345)
+        );
+      }
+
+      body.auth-page {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at 12% 10%, #fff6e9 0%, transparent 38%),
+          radial-gradient(circle at 88% 92%, #e8f0ff 0%, transparent 42%),
+          linear-gradient(135deg, var(--bg), var(--bg-soft));
+        color: var(--ink);
+        overflow-x: hidden;
+      }
+
+      .auth-background {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+      }
+
+      .bg-circle {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.5;
+        filter: blur(1px);
+        animation: floatCircle 12s ease-in-out infinite alternate;
+      }
+
+      .circle-a {
+        width: 240px;
+        height: 240px;
+        top: -90px;
+        left: -70px;
+        background: rgba(255, 183, 120, 0.45);
+      }
+
+      .circle-b {
+        width: 190px;
+        height: 190px;
+        right: 7%;
+        top: 18%;
+        background: rgba(123, 176, 255, 0.4);
+        animation-delay: 1.8s;
+      }
+
+      .circle-c {
+        width: 220px;
+        height: 220px;
+        left: 42%;
+        bottom: -110px;
+        background: rgba(124, 204, 163, 0.35);
+        animation-delay: 3.2s;
+      }
+
+      .auth-layout {
+        position: relative;
+        z-index: 1;
+      }
+
+      .auth-card {
+        background: var(--card);
+        backdrop-filter: blur(5px);
+        border-radius: 24px;
+        box-shadow: 0 20px 55px rgba(40, 46, 57, 0.18);
+      }
+
+      .brand-head {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 8px;
+        font-weight: 700;
+        letter-spacing: 0.6px;
+      }
+
+      .brand-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--brand);
+      }
+
+      .field-with-icon {
+        position: relative;
+      }
+
+      .field-with-icon .field-icon {
+        position: absolute;
+        left: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--muted);
+        font-size: 16px;
+        pointer-events: none;
+        z-index: 2;
+        transition: color 0.2s ease;
+      }
+
+      .field-with-icon .form-control {
+        height: 44px;
+        border-radius: 13px;
+        padding-left: 42px;
+        border: 1px solid var(--line);
+        background: #fbfcff;
+        transition:
+          border-color 0.2s ease,
+          box-shadow 0.2s ease,
+          background-color 0.2s ease;
+      }
+
+      .field-with-icon .form-control:hover {
+        background: #fff;
+        border-color: #c8d0db;
+      }
+
+      .field-with-icon .form-control:focus {
+        border-color: var(--brand);
+        box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.12);
+      }
+
+      .field-with-icon:focus-within .field-icon {
+        color: var(--brand);
+      }
+
+      .field-with-icon .invalid-feedback {
+        padding-left: 2px;
+      }
+
+      .field-with-icon.has-password-toggle .form-control {
+        padding-right: 46px;
+      }
+
+      .password-toggle {
+        position: absolute;
+        right: 10px;
+        top: 9px;
+        width: 28px;
+        height: 28px;
+        border: 0;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        place-items: center;
+        border-radius: 8px;
+        background: transparent;
+        color: var(--muted);
+        z-index: 3;
+        cursor: pointer;
+        transition:
+          color 0.2s ease,
+          background-color 0.2s ease;
+      }
+
+      .password-toggle:hover {
+        color: var(--brand-strong);
+        background: rgba(29, 78, 216, 0.1);
+      }
+
+      .password-toggle:focus-visible {
+        outline: 0;
+        box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.2);
+      }
+
+      .register-submit-btn {
+        position: relative;
+        height: 46px;
+        border-radius: 999px;
+        overflow: hidden;
+        background: linear-gradient(120deg, var(--brand), var(--brand-strong));
+        border: none;
+        transition:
+          transform 0.2s ease,
+          filter 0.2s ease;
+      }
+
+      .register-submit-btn:hover {
+        transform: translateY(-1px);
+        filter: brightness(1.05);
+      }
+
+      .register-submit-btn .btn-label,
+      .register-submit-btn .btn-loader {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        transition:
+          opacity 0.25s ease,
+          transform 0.25s ease;
+      }
+
+      .register-submit-btn .btn-label {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .register-submit-btn .btn-loader {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      .register-submit-btn.is-loading .btn-label,
+      .register-submit-btn.is-success .btn-label {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+
+      .register-submit-btn.is-loading .btn-loader,
+      .register-submit-btn.is-success .btn-loader {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .register-submit-btn .btn-loader::before {
+        content: "";
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.35);
+        border-top-color: #fff;
+        animation: submitSpin 0.8s linear infinite;
+      }
+
+      .register-submit-btn.is-success {
+        background: var(--accent);
+      }
+
+      .register-submit-btn.is-success .btn-loader::before {
+        width: 18px;
+        height: 10px;
+        border: 0;
+        border-left: 3px solid #fff;
+        border-bottom: 3px solid #fff;
+        border-radius: 1px;
+        transform: rotate(-45deg);
+        animation: none;
+      }
+
+      .success-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: grid;
+        place-items: center;
+        padding: 20px;
+        background: rgba(14, 19, 30, 0.5);
+        backdrop-filter: blur(4px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.35s ease;
+      }
+
+      .success-overlay.show {
+        opacity: 1;
+      }
+
+      .success-card {
+        width: min(420px, 100%);
+        background: #fff;
+        border-radius: 20px;
+        padding: 28px;
+        text-align: center;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        transform: translateY(14px) scale(0.95);
+        animation: successCardIn 0.45s ease forwards;
+      }
+
+      .success-icon {
+        width: 76px;
+        height: 76px;
+        margin: 0 auto 16px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 30% 30%, #7ce5a1, #1f9f57);
+        display: grid;
+        place-items: center;
+        color: #fff;
+        font-size: 34px;
+        font-weight: 700;
+        box-shadow: 0 12px 30px rgba(31, 159, 87, 0.35);
+        position: relative;
+      }
+
+      .success-icon::after {
+        content: "";
+        position: absolute;
+        inset: -10px;
+        border-radius: 50%;
+        border: 2px solid rgba(31, 159, 87, 0.25);
+        animation: successPulse 1.2s ease-out infinite;
+      }
+
+      .success-title {
+        margin: 0;
+        font-size: 1.35rem;
+        font-weight: 700;
+        color: #101826;
+      }
+
+      .success-subtitle {
+        margin: 8px 0 0;
+        color: #566175;
+      }
+
+      @keyframes submitSpin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes successCardIn {
+        to {
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      @keyframes successPulse {
+        from {
+          opacity: 1;
+          transform: scale(0.82);
+        }
+        to {
+          opacity: 0;
+          transform: scale(1.18);
+        }
+      }
+
+      @keyframes floatCircle {
+        from {
+          transform: translate3d(0, 0, 0) scale(1);
+        }
+        to {
+          transform: translate3d(16px, -12px, 0) scale(1.08);
+        }
+      }
+
+      @media (max-width: 767px) {
+        .auth-card .card-body {
+          padding: 1.4rem !important;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .bg-circle,
+        .register-submit-btn,
+        .register-submit-btn .btn-label,
+        .register-submit-btn .btn-loader,
+        .success-overlay,
+        .success-card,
+        .success-icon::after {
+          transition: none;
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+  <body class="auth-page">
+    <div class="auth-background" aria-hidden="true">
+      <span class="bg-circle circle-a"></span>
+      <span class="bg-circle circle-b"></span>
+      <span class="bg-circle circle-c"></span>
+    </div>
+
+    <div class="container auth-layout py-4">
+      <div class="row justify-content-center align-items-center min-vh-100 g-4">
+        <div class="col-12 col-xl-11">
+          <div class="row justify-content-center">
+            <div class="col-12 col-lg-8 col-xl-6">
+              <div class="card auth-card border-0 h-100">
+                <div
+                  class="card-body p-3 p-md-4 d-flex flex-column justify-content-center"
+                >
+                  <div class="brand-head">
+                    <span class="brand-dot"></span> SHOP.CO
+                  </div>
+                  <h1 class="h3 mb-2 text-center">Create your account</h1>
+                  <p class="text-muted text-center mb-4">
+                    Sign up now and get 20% off your first order.
+                  </p>
+
+                  <form class="needs-validation" novalidate>
+                    <div class="mb-3">
+                      <label for="username" class="form-label">Username</label>
+                      <div class="field-with-icon">
+                        <i
+                          class="bi bi-person-fill field-icon"
+                          aria-hidden="true"
+                        ></i>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="username"
+                          name="username"
+                          autocomplete="username"
+                          minlength="3"
+                          maxlength="30"
+                          pattern="[A-Za-z][A-Za-z0-9_]{2,29}"
+                          required
+                        />
+                        <div class="invalid-feedback">
+                          Username must start with a letter and be 3-30
+                          characters.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="email" class="form-label"
+                        >Email address</label
+                      >
+                      <div class="field-with-icon">
+                        <i
+                          class="bi bi-envelope-fill field-icon"
+                          aria-hidden="true"
+                        ></i>
+                        <input
+                          type="email"
+                          class="form-control"
+                          id="email"
+                          name="email"
+                          autocomplete="email"
+                          pattern="[^\s@]+@[^\s@]+\.[^\s@]{2,}"
+                          required
+                        />
+                        <div class="invalid-feedback">
+                          Please provide a valid email.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="phone" class="form-label">Phone</label>
+                      <div class="field-with-icon">
+                        <i
+                          class="bi bi-telephone-fill field-icon"
+                          aria-hidden="true"
+                        ></i>
+                        <input
+                          type="tel"
+                          class="form-control"
+                          id="phone"
+                          name="phone"
+                          autocomplete="tel"
+                          inputmode="numeric"
+                          maxlength="11"
+                          pattern="01[0125][0-9]{8}"
+                          title="Egyptian mobile only: 010 or 011 or 012 or 015 then 8 digits."
+                          required
+                        />
+                        <div class="invalid-feedback">
+                          Phone must be Egyptian mobile: 010/011/012/015 + 8
+                          digits.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="password" class="form-label">Password</label>
+                      <div class="field-with-icon has-password-toggle">
+                        <i
+                          class="bi bi-shield-lock-fill field-icon"
+                          aria-hidden="true"
+                        ></i>
+                        <input
+                          type="password"
+                          class="form-control"
+                          id="password"
+                          name="password"
+                          autocomplete="new-password"
+                          pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}"
+                          required
+                        />
+                        <div class="invalid-feedback">
+                          Password must be at least 8 characters with upper,
+                          lower, and number.
+                        </div>
+                        <button
+                          type="button"
+                          class="password-toggle"
+                          data-target="password"
+                          aria-label="Show password"
+                        >
+                          <i class="bi bi-eye" aria-hidden="true"></i>
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="passwordconfirm" class="form-label"
+                        >Confirm Password</label
+                      >
+                      <div class="field-with-icon has-password-toggle">
+                        <i
+                          class="bi bi-check-circle-fill field-icon"
+                          aria-hidden="true"
+                        ></i>
+                        <input
+                          type="password"
+                          class="form-control"
+                          id="passwordconfirm"
+                          name="passwordconfirm"
+                          autocomplete="new-password"
+                          required
+                        />
+                        <div class="invalid-feedback">
+                          Passwords must match.
+                        </div>
+                        <button
+                          type="button"
+                          class="password-toggle"
+                          data-target="passwordconfirm"
+                          aria-label="Show password"
+                        >
+                          <i class="bi bi-eye" aria-hidden="true"></i>
+                        </button>
+                      </div>
+                    </div>
+
+                    <button
+                      type="submit"
+                      class="btn btn-primary w-100 register-submit-btn"
+                    >
+                      <span class="btn-label">Register</span>
+                      <span class="btn-loader" aria-hidden="true"></span>
+                    </button>
+                  </form>
+
+                  <div class="text-center mt-3">
+                    <small>
+                      Already have an account?
+                      <a href="signin.html">Sign in</a>
+                    </small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="success-overlay" id="registerSuccessOverlay" aria-hidden="true">
+      <div class="success-card">
+        <div class="success-icon" aria-hidden="true">&#10003;</div>
+        <h2 class="success-title">Account Created Successfully</h2>
+        <p class="success-subtitle">Preparing your shopping home page...</p>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-8d1+zG6clSRsKPAjxFIMjh0h4VjAomfsZyny6j6bR+hi7YdpT+4or4XGOQm49KQ5"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="js/pages/register.js"></script>
+  </body>
+</html>

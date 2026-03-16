@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>shop</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="image/online-shop.png" />
+    <!-- cdn for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="top-bar">
+      <i class="fa-solid fa-truck"></i> Sign up and get 20% off to your first
+      order.
+      <a href="register.html">Sign Up Now</a>
+    </div>
+
+    <header class="main-header">
+      <div class="logo">SHOP.CO</div>
+      <nav id="primaryNav" class="nav-menu">
+        <a href="#">
+          <select>
+            <option>Categories</option>
+            <option>Clothing</option>
+            <option>Shoes</option>
+            <option>Accessories</option>
+          </select>
+        </a>
+        <a href="#">On Sale</a>
+        <a href="#">New Arrivals</a>
+        <a href="#">Brands</a>
+      </nav>
+      <div class="header-icons">
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-label="Toggle menu"
+          aria-controls="primaryNav"
+          aria-expanded="false"
+        >
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div id="headerSearchBox" class="header-search">
+          <i class="fa-solid fa-magnifying-glass search-input-icon"></i>
+          <input
+            id="headerSearchInput"
+            class="search-input"
+            type="search"
+            placeholder="Search products..."
+            autocomplete="off"
+          />
+        </div>
+        <a class="cart-link" href="cart.html" aria-label="Open cart">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span id="cartCount" class="cart-count" hidden>0</span>
+        </a>
+        <a
+          id="userAccount"
+          class="user-account"
+          href="signin.html"
+          aria-label="User account"
+        >
+          <i class="fa-solid fa-user" aria-hidden="true"></i>
+          <span id="userNameDisplay" class="user-name" hidden></span>
+        </a>
+      </div>
+    </header>
+
+    <section class="hero position-relative">
+      <div class="hero-content">
+        <h1>FIND CLOTHES THAT MATCHES YOUR STYLE</h1>
+        <p>
+          Browse through our diverse range of meticulously crafted garments,
+          designed to bring out your individuality and cater to your sense of
+          style.
+        </p>
+        <button class="shop-now">Shop Now</button>
+
+        <div class="stats">
+          <div class="stat-item">
+            <h3>200+</h3>
+            <p>International Brands</p>
+          </div>
+          <div class="stat-item">
+            <h3>2,000+</h3>
+            <p>High-Quality Products</p>
+          </div>
+          <div class="stat-item">
+            <h3>30,000+</h3>
+            <p>Happy Customers</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bootstrap positioning for stars -->
+      <img
+        class="position-absolute top-22 end-0 translate-middle-x mt-3 mb-2 w-20 p-10"
+        src="image/Vector (1).png"
+      />
+      <img
+        class="position-absolute top-50 start-50 translate-middle mt-5 ms-5 w-15"
+        src="image/Vector.png"
+        alt="Small star"
+      />
+    </section>
+    <br />
+    <section class="brands-wrapper">
+      <div class="brands">
+        <img src="image/Group (1).png" alt="Versace" />
+        <img src="image/zara-logo-1 1.png" alt="Zara" />
+        <img src="image/gucci-logo-1 1.png" alt="Gucci" />
+        <img src="image/prada-logo-1 1.png" alt="Prada" />
+        <img src="image/Group.png" />
+      </div>
+    </section>
+
+    <div class="section-header">
+      <h2>NEW ARRIVALS</h2>
+      <div class="tabs">
+        <span class="tab active">New Arrivals</span>
+        <span class="tab">Top Selling</span>
+      </div>
+    </div>
+
+    <div class="product-grid">
+      <div class="product-card card border-0 shadow-sm h-100">
+        <div class="product-image card-img-top">
+          <img src="image/image 7.png" alt="T-shirt with Tape Details" />
+        </div>
+        <div class="product-info card-body d-flex flex-column">
+          <div class="product-title h6 fw-bold mb-1">
+            T-shirt with Tape Details
+          </div>
+          <div class="product-rating small mb-2">★★★★★ 4.5/5</div>
+          <div class="product-price mt-auto">$120</div>
+        </div>
+      </div>
+      <div class="product-card card border-0 shadow-sm h-100">
+        <div class="product-image card-img-top">
+          <img src="image/image 8.png" alt="Skirt with Tape Details" />
+        </div>
+        <div class="product-info card-body d-flex flex-column">
+          <div class="product-title h6 fw-bold mb-1">
+            Skirt with Tape Details
+          </div>
+          <div class="product-rating small mb-2">★★★★★ 4.5/5</div>
+          <div class="product-price mt-auto">
+            $240 <span class="original-price">$260</span>
+
+            <span class="discount">-20%</span>
+          </div>
+        </div>
+      </div>
+      <div class="product-card card border-0 shadow-sm h-100">
+        <div class="product-image card-img-top">
+          <img src="image/image 9.png" alt="Checkered Shirt" />
+        </div>
+        <div class="product-info card-body d-flex flex-column">
+          <div class="product-title h6 fw-bold mb-1">Checkered Shirt</div>
+          <div class="product-rating small mb-2">★★★★★ 4.5/5</div>
+          <div class="product-price mt-auto">$180</div>
+        </div>
+      </div>
+      <div class="product-card card border-0 shadow-sm h-100">
+        <div class="product-image card-img-top">
+          <img src="image/image 10.png" alt="Sleeve Striped T-shirt" />
+        </div>
+        <div class="product-info card-body d-flex flex-column">
+          <div class="product-title h6 fw-bold mb-1">
+            Sleeve Striped T-shirt
+          </div>
+          <div class="product-rating small mb-2">★★★★★ 4.5/5</div>
+          <div class="product-price mt-auto">
+            $130 <span class="original-price">$160</span>
+            <span class="discount">-30%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-header">
+      <h2>TOP SELLING</h2>
+      <div class="tabs">
+        <span class="tab">New Arrivals</span>
+        <span class="tab active">Top Selling</span>
+      </div>
+    </div>
+
+    <div class="product-grid">
+      <div class="product-card card border-0 shadow-sm h-100">
+        <div class="product-image card-img-top">
+          <img src="image/image 7 (1).png" alt="Vertical Striped Shirt" />
+        </div>
+        <div class="product-info card-body d-flex flex-column">
+          <div class="product-title h6 fw-bold mb-1">
+            Vertical Striped Shirt
+          </div>
+          <div class="product-rating small mb-2">★★★★★ 4.5/5</div>
+          <div class="product-price mt-auto">
+            $212 <span class="original-price">$232</span>
+            <span class="discount">-20%</span>
+          </div>
+        </div>
+      </div>
+      <div class="product-card card border-0 shadow-sm h-100">
+        <div class="product-image card-img-top">
+          <img
+            class="w-100"
+            src="image/image 8 (1).png"
+            alt="Courage Graphic T-shirt"
+          />
+        </div>
+        <div class="product-info card-body d-flex flex-column">
+          <div class="product-title h6 fw-bold mb-1">
+            Courage Graphic T-shirt
+          </div>
+          <div class="product-rating small mb-2">★★★★★ 4.5/5</div>
+          <div class="product-price mt-auto">$145</div>
+        </div>
+      </div>
+      <div class="product-card card border-0 shadow-sm h-100">
+        <div class="product-image card-img-top">
+          <img
+            class="w-100"
+            src="image/image 9 (1).png"
+            alt="Loose Fit Bermuda Shorts"
+          />
+        </div>
+        <div class="product-info card-body d-flex flex-column">
+          <div class="product-title h6 fw-bold mb-1">
+            Loose Fit Bermuda Shorts
+          </div>
+          <div class="product-rating small mb-2">★★★★★ 4.5/5</div>
+          <div class="product-price mt-auto">$80</div>
+        </div>
+      </div>
+      <div class="product-card card border-0 shadow-sm h-100">
+        <div class="product-image card-img-top">
+          <img
+            class="w-100"
+            src="image/image 10 (1).png"
+            alt="Faded Skinny Jeans"
+          />
+        </div>
+        <div class="product-info card-body d-flex flex-column">
+          <div class="product-title h6 fw-bold mb-1">Faded Skinny Jeans</div>
+          <div class="product-rating small mb-2">★★★★★ 4.5/5</div>
+          <div class="product-price mt-auto">$210</div>
+        </div>
+      </div>
+    </div>
+
+    <section class="style-section">
+      <div class="section-header">
+        <h2>BROWSE BY DRESS STYLE</h2>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <div class="style-card">
+            <img src="image/image 11.png" alt="Casual Style" />
+            <span class="style-label">Casual</span>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="style-card">
+            <img src="image/Frame 62.png" alt="Formal Style" />
+            <!-- <span class="style-label">Formal</span> -->
+          </div>
+        </div>
+        <div class="col-md-8 mb-4">
+          <div class="style-card">
+            <img src="image/image 12.png" alt="Party Style" />
+            <span class="style-label">Party</span>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="style-card">
+            <img src="image/image 14.png" alt="Gym Style" />
+            <span class="style-label">Gym</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="reviews">
+      <div class="reviews-header">
+        <h2>OUR HAPPY CUSTOMERS</h2>
+        <div class="reviews-nav">
+          <button
+            class="reviews-prev"
+            type="button"
+            aria-label="Show previous review"
+          >
+            <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+          </button>
+          <button
+            class="reviews-next"
+            type="button"
+            aria-label="Show next review"
+          >
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="reviews-slider">
+        <div class="reviews-grid">
+          <article class="review-card">
+            <div class="review-rating">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="reviewer">
+              Sarah M. <span style="color: #4caf50">&#10003;</span>
+            </div>
+            <p class="review-text">
+              "I'm blown away by the quality and style of the clothes I received
+              from SHOP.CO. From casual wear to elegant dresses, every piece
+              I've bought has exceeded my expectations."
+            </p>
+          </article>
+          <article class="review-card">
+            <div class="review-rating">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="reviewer">
+              Alex K. <span style="color: #4caf50">&#10003;</span>
+            </div>
+            <p class="review-text">
+              "Finding clothes that align with my personal style used to be a
+              challenge until I discovered SHOP.CO. The range of options they
+              offer is truly remarkable."
+            </p>
+          </article>
+          <article class="review-card">
+            <div class="review-rating">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="reviewer">
+              James L. <span style="color: #4caf50">&#10003;</span>
+            </div>
+            <p class="review-text">
+              "As someone who's always on the lookout for unique fashion pieces,
+              I'm thrilled to have stumbled upon SHOP.CO. The quality of their
+              products is outstanding."
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="newsletter">
+      <h3>STAY UP TO DATE ABOUT OUR LATEST OFFERS</h3>
+      <div class="newsletter-form">
+        <input type="email" placeholder="Enter your email address" />
+        <button>Subscribe to Newsletter</button>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>SHOP.CO</h3>
+          <p>
+            We have clothes that suits your style and which you're proud to
+            wear. From women to men.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>COMPANY</h4>
+          <a href="#">About</a>
+          <a href="#">Features</a>
+          <a href="#">Works</a>
+          <a href="#">Career</a>
+        </div>
+        <div class="footer-col">
+          <h4>HELP</h4>
+          <a href="#">Customer Support</a>
+          <a href="#">Delivery Details</a>
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Privacy Policy</a>
+        </div>
+        <div class="footer-col">
+          <h4>FAQ</h4>
+          <a href="#">Account</a>
+          <a href="#">Manage Deliveries</a>
+          <a href="#">Orders</a>
+          <a href="#">Payments</a>
+        </div>
+        <div class="footer-col">
+          <h4>RESOURCES</h4>
+          <a href="#">Free eBooks</a>
+          <a href="#">Development Tutorial</a>
+          <a href="#">How to - Blog</a>
+          <a href="#">Youtube Playlist</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 SHOP.CO. All rights reserved.</p>
+        <div class="payment-icons">
+          <img src="image/Badge (1).png" alt="Visa" />
+          <img src="image/Badge (2).png" alt="MasterCard" />
+          <img src="image/Badge (3).png" alt="PayPal" />
+
+          <img src="image/G Pay.png" alt="American Express" width="70px" />
+        </div>
+      </div>
+    </footer>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
