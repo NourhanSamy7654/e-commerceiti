@@ -184,6 +184,32 @@ const extractProductData = (card, index) => {
   };
 };
 
+const bindAddToCartButton = (addButton, card, index) => {
+  if (!addButton || addButton.dataset.cartBound === "true") {
+    return;
+  }
+
+  addButton.dataset.cartBound = "true";
+  addButton.type = "button";
+
+  addButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const product = extractProductData(card, index);
+    addItemToCart(product);
+    updateCartCountUI();
+
+    addButton.textContent = "Added";
+    addButton.disabled = true;
+
+    window.setTimeout(() => {
+      addButton.textContent = "Add to Cart";
+      addButton.disabled = false;
+    }, 700);
+  });
+};
+
 const setupAddToCartButtons = () => {
   const productCards = document.querySelectorAll(".product-card");
 
@@ -194,33 +220,20 @@ const setupAddToCartButtons = () => {
   productCards.forEach((card, index) => {
     const productInfo = card.querySelector(".product-info");
 
-    if (!productInfo || productInfo.querySelector(".add-to-cart-btn")) {
+    if (!productInfo) {
       return;
     }
 
-    const addButton = document.createElement("button");
-    addButton.type = "button";
-    addButton.className = "add-to-cart-btn";
-    addButton.textContent = "Add to Cart";
+    let addButton = productInfo.querySelector(".add-to-cart-btn");
 
-    addButton.addEventListener("click", (event) => {
-      event.preventDefault();
-      event.stopPropagation();
+    if (!addButton) {
+      addButton = document.createElement("button");
+      addButton.className = "add-to-cart-btn";
+      addButton.textContent = "Add to Cart";
+      productInfo.appendChild(addButton);
+    }
 
-      const product = extractProductData(card, index);
-      addItemToCart(product);
-      updateCartCountUI();
-
-      addButton.textContent = "Added";
-      addButton.disabled = true;
-
-      window.setTimeout(() => {
-        addButton.textContent = "Add to Cart";
-        addButton.disabled = false;
-      }, 700);
-    });
-
-    productInfo.appendChild(addButton);
+    bindAddToCartButton(addButton, card, index);
   });
 };
 
@@ -329,6 +342,7 @@ const setupReviewsCarousel = () => {
   const loopStartIndex = originalSlides.length;
   let currentIndex = 0;
   let autoplayTimer = null;
+  let isSliding = false;
 
   const getGap = () => {
     const computedStyles = window.getComputedStyle(reviewsTrack);
@@ -351,36 +365,42 @@ const setupReviewsCarousel = () => {
     reviewsTrack.style.transform = `translateX(-${currentIndex * getStepSize()}px)`;
   };
 
-  const goToNext = () => {
-    currentIndex += 1;
+  const queueSlide = (targetIndex) => {
+    if (isSliding) {
+      return;
+    }
+
+    const step = getStepSize();
+
+    if (!step) {
+      return;
+    }
+
+    isSliding = true;
+    currentIndex = targetIndex;
     updateTrackPosition(true);
   };
 
-  const goToPrevious = () => {
-    if (currentIndex > 0) {
-      currentIndex -= 1;
-      updateTrackPosition(true);
-      return;
+  const goToNext = () => {
+    if (currentIndex >= loopStartIndex) {
+      currentIndex -= loopStartIndex;
+      updateTrackPosition(false);
     }
 
-    currentIndex = loopStartIndex;
-    updateTrackPosition(false);
-
     window.requestAnimationFrame(() => {
-      window.requestAnimationFrame(() => {
-        currentIndex -= 1;
-        updateTrackPosition(true);
-      });
+      queueSlide(currentIndex + 1);
     });
   };
 
-  const handleLoopReset = () => {
-    if (currentIndex < loopStartIndex) {
-      return;
+  const goToPrevious = () => {
+    if (currentIndex <= 0) {
+      currentIndex += loopStartIndex;
+      updateTrackPosition(false);
     }
 
-    currentIndex -= loopStartIndex;
-    updateTrackPosition(false);
+    window.requestAnimationFrame(() => {
+      queueSlide(currentIndex - 1);
+    });
   };
 
   const stopAutoplay = () => {
@@ -411,10 +431,13 @@ const setupReviewsCarousel = () => {
     restartAutoplay();
   });
 
-  reviewsTrack.addEventListener("transitionend", handleLoopReset);
+  reviewsTrack.addEventListener("transitionend", () => {
+    isSliding = false;
+  });
 
   window.addEventListener("resize", () => {
     updateTrackPosition(false);
+    isSliding = false;
   });
 
   reviewsSlider.addEventListener("mouseenter", stopAutoplay);
